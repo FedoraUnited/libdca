@@ -1,7 +1,7 @@
 Summary: DTS Coherent Acoustics decoder library
 Name: libdca
 Version: 0.0.5
-Release: 10%{?dist}
+Release: 11%{?dist}
 URL: http://www.videolan.org/developers/libdca.html
 Group: System Environment/Libraries
 Source: http://download.videolan.org/pub/videolan/libdca/0.0.5/%{name}-%{version}.tar.bz2
@@ -73,6 +73,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/%{name}.la
 %{_libdir}/%{name}.so
 
 %changelog
+
+* Fri Jul 08 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 0.0.5-11
+- Massive rebuild
 
 * Sat Mar 05 2016 David Vasquez <davidjeremias82 at gmail dot com> - 0.0.5-10
 - Corrected conflict with dcadec, ffmpeg doesn't have libdca support, it only has libdcadec support, libdca hasn't been updated in years, and has an extremely limited feature set https://github.com/foo86/dcadec/issues/15.
