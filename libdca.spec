@@ -4,7 +4,7 @@ Version: 0.0.6
 Release: 7%{?dist}
 URL: http://www.videolan.org/developers/libdca.html
 Group: System Environment/Libraries
-Source: http://download.videolan.org/pub/videolan/libdca/0.0.5/%{name}-%{version}.tar.bz2
+Source: http://download.videolan.org/pub/videolan/libdca/%{version}/%{name}-%{version}.tar.bz2
 License: GPLv2+
 
 %description
