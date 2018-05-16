@@ -1,12 +1,10 @@
 Summary: DTS Coherent Acoustics decoder library
 Name: libdca
-Version: 0.0.5
-Release: 11%{?dist}
+Version: 0.0.6
+Release: 7%{?dist}
 URL: http://www.videolan.org/developers/libdca.html
 Group: System Environment/Libraries
 Source: http://download.videolan.org/pub/videolan/libdca/0.0.5/%{name}-%{version}.tar.bz2
-Patch0: libdca-0.0.5-relsymlinks.patch
-Patch1: libdca-0.0.5-strict-aliasing.patch
 License: GPLv2+
 
 %description
@@ -37,14 +35,13 @@ Group: Applications/Multimedia
 Various tools that use %{name}.
 
 %prep
-%setup -q
-%patch0 -p1 -b .relsymlinks
-%patch1 -p1 -b .aliasing
+%autosetup 
+
 iconv -f ISO8859-1 -t UTF-8 AUTHORS > tmp; mv tmp AUTHORS
 
 %build
 ./configure --prefix=/usr --bindir=%{_bindir}/%{name} --libdir=%{_libdir} --mandir=%{_mandir} --disable-static
-# Get rid of the /usr/lib64 RPATH on 64bit (as of 0.0.5)
+# Get rid of the /usr/lib64 RPATH on 64bit (as of 0.0.6)
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 # Force PIC as applications fail to recompile against the lib on x86_64 without
@@ -73,6 +70,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/%{name}.la
 %{_libdir}/%{name}.so
 
 %changelog
+
+* Mon May 14 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 0.0.6-7  
+- Updated to 0.0.6
 
 * Fri Jul 08 2016 David Vásquez <davidjeremias82 AT gmail DOT com> - 0.0.5-11
 - Massive rebuild
