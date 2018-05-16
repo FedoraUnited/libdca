@@ -50,6 +50,7 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %install
 make DESTDIR=$RPM_BUILD_ROOT install INSTALL="install -p"
 rm $RPM_BUILD_ROOT%{_libdir}/%{name}.la
+rm $RPM_BUILD_ROOT%{_libdir}/libdts.a
 
 %post -p /sbin/ldconfig
 
