@@ -4,3 +4,5 @@ RPMS/*
 SPECS/*
 SRPMS/*
 libdca*.tar.bz2
+.directory
+*.rpm

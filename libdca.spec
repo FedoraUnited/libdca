@@ -1,12 +1,18 @@
+%define _legacy_common_support 1
+
 Summary: DTS Coherent Acoustics decoder library
 Name: libdca
-Version: 0.0.6
+Version: 0.0.7
 Release: 7%{?dist}
 URL: http://www.videolan.org/developers/libdca.html
 Group: System Environment/Libraries
 Source: http://download.videolan.org/pub/videolan/libdca/%{version}/%{name}-%{version}.tar.bz2
 License: GPLv2+
 BuildRequires: gcc-c++
+BuildRequires: autoconf 
+BuildRequires: gettext 
+BuildRequires: automake 
+BuildRequires: libtool
 
 %description
 libdca is a free library for decoding DTS Coherent Acoustics streams. It is
@@ -41,6 +47,7 @@ Various tools that use %{name}.
 iconv -f ISO8859-1 -t UTF-8 AUTHORS > tmp; mv tmp AUTHORS
 
 %build
+./bootstrap
 ./configure --prefix=/usr --bindir=%{_bindir}/%{name} --libdir=%{_libdir} --mandir=%{_mandir} --disable-static
 # Get rid of the /usr/lib64 RPATH on 64bit (as of 0.0.6)
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
@@ -72,6 +79,9 @@ rm $RPM_BUILD_ROOT%{_libdir}/libdts.a
 %{_libdir}/%{name}.so
 
 %changelog
+
+* Sun Apr 12 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 0.0.7-7  
+- Updated to 0.0.7
 
 * Mon May 14 2018 Unitedrpms Project <unitedrpms AT protonmail DOT com> 0.0.6-7  
 - Updated to 0.0.6
